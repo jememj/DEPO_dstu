@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchArticles = createAsyncThunk(
@@ -21,11 +21,24 @@ export const fetchArticlesByTheme = createAsyncThunk(
     return res;
   }
 );
+export const fetchArticleById = createAsyncThunk(
+  "api/fetchArticleById",
+  async (id) => {
+    const res = await axios
+      .get(`http://localhost:3000/api/article/${id}`)
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+    return res;
+  }
+);
+
 const articlesSlice = createSlice({
   name: "Articles",
   initialState: {
     articles: [],
     articlesByTheme: [],
+    currentArticle: [],
+    status: true,
   },
   reducers: {
     setArticlesByTheme(state, action) {
@@ -33,18 +46,26 @@ const articlesSlice = createSlice({
         (e) => e.theme === action.payload
       );
     },
+    setStatus(state, action) {
+      state.status = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchArticles.fulfilled, (state, action) => {
       state.articles = [...action.payload.articles];
+      state.status = true;
     });
     builder.addCase(fetchArticlesByTheme.fulfilled, (state, action) => {
-      console.log("action", action.payload.articles);
       state.articlesByTheme = action.payload.articles;
+      state.status = true;
+    });
+    builder.addCase(fetchArticleById.fulfilled, (state, action) => {
+      state.currentArticle = action.payload.articles;
+      state.status = true;
     });
   },
 });
 
-export const { setArticlesByTheme } = articlesSlice.actions;
+export const { setArticlesByTheme, setStatus } = articlesSlice.actions;
 
 export default articlesSlice.reducer;

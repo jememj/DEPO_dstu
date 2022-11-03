@@ -19,4 +19,6 @@ const ListWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 300px;
+  row-gap: 20px;
+  column-gap: 20px;
 `;

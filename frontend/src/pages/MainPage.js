@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchArticles } from "../redux/articlesSlice";
+import { fetchArticles, setStatus } from "../redux/articlesSlice";
 import ListArticles from "../components/Articles/ListArticles";
 
 const sections = [
@@ -15,10 +15,12 @@ const MainPage = () => {
   const articles = useSelector((state) => state.articlesSlice.articles);
 
   useEffect(() => {
+    dispatch(setStatus(false));
     dispatch(fetchArticles());
   }, []);
 
-  if (!articles?.length) {
+  const status = useSelector((state) => state.articlesSlice.status);
+  if (!status || !articles?.length) {
     return null;
   }
 

@@ -1,14 +1,14 @@
 import { useEffect } from "react";
-
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchArticlesByTheme } from "../redux/articlesSlice";
+import { fetchArticlesByTheme, setStatus } from "../redux/articlesSlice";
 import ListArticles from "../components/Articles/ListArticles";
 
 const ArtPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setStatus(false));
     dispatch(fetchArticlesByTheme("art"));
   }, []);
 
@@ -16,6 +16,10 @@ const ArtPage = () => {
     (state) => state.articlesSlice.articlesByTheme
   );
 
+  const status = useSelector((state) => state.articlesSlice.status);
+  if (!status || !articlesByTheme?.length) {
+    return null;
+  }
   return (
     <Wrapper>
       <h3>Art</h3>

@@ -1,16 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ArticleCompact = ({ article }) => {
   return (
-    <>
-      <Item key={article.id}>{article.title}</Item>
-    </>
+    <StyledLink to={`/article/${article.id}`} key={article.id}>
+      <Container key={article.id}>{article.title}</Container>
+    </StyledLink>
   );
 };
 export default ArticleCompact;
-const Item = styled.div`
-  width: 400px;
-  border: 1px solid black;
-  margin: 5px;
+const Container = styled.div`
+  width: 100%;
+`;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  border: 1px dashed black;
 `;
