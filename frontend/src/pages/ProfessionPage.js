@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import ListArticles from "../components/Articles/ListArticles";
 import { fetchArticlesByTheme, setStatus } from "../redux/articlesSlice";
+import { Filters } from "../components/Filters/Filters";
 
 const ProfessionPage = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const ProfessionPage = () => {
   return (
     <Wrapper>
       <h3>Prof</h3>
+      <Filters />
       <ListArticles list={articlesByTheme} />
     </Wrapper>
   );

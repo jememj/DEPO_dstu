@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchArticlesByTheme, setStatus } from "../redux/articlesSlice";
 import ListArticles from "../components/Articles/ListArticles";
+import { Filters } from "../components/Filters/Filters";
 
 const ArtPage = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const ArtPage = () => {
   return (
     <Wrapper>
       <h3>Art</h3>
+      <Filters />
       <ListArticles list={articlesByTheme} />
     </Wrapper>
   );
