@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchArticlesByTheme, setStatus } from "../redux/articlesSlice";
 import ListArticles from "../components/Articles/ListArticles";
+import { Filters } from "../components/Filters/Filters";
 
 const CoachPage = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const CoachPage = () => {
   return (
     <Wrapper>
       <h3>Couch</h3>
+      <Filters />
       <ListArticles list={articlesByTheme} />
     </Wrapper>
   );

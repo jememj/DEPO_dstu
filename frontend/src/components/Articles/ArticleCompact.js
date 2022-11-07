@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ArticleCompact = ({ article }) => {
   return (
     <StyledLink to={`/article/${article.id}`} key={article.id}>
-      <Container key={article.id}>{article.title}</Container>
+      <Container>{article.title}</Container>
     </StyledLink>
   );
 };

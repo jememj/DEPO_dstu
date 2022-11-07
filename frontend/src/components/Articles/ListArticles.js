@@ -17,7 +17,7 @@ export default ListArticles;
 const ListWrapper = styled.div`
   background-color: #f5f5f5;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   grid-auto-rows: 300px;
   row-gap: 20px;
   column-gap: 20px;

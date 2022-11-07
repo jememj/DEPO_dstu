@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchArticleById, setStatus } from "../../redux/articlesSlice";
+import { fetchArticleById, setStatus } from "../../../redux/articlesSlice";
 import { useParams } from "react-router-dom";
-
+import Comments from "./Comments";
 const CurrentArticle = () => {
   const dispatch = useDispatch();
+
   let { id } = useParams();
+
   const articleById = useSelector(
     (state) => state.articlesSlice.currentArticle
   );
@@ -15,21 +17,22 @@ const CurrentArticle = () => {
     dispatch(fetchArticleById(id));
   }, []);
 
-  console.log("articleById", articleById);
-
   const status = useSelector((state) => state.articlesSlice.status);
-  console.log("status", status);
-  if (!status || !articleById?.length) {
+  if (!status || !articleById) {
     return null;
   }
+
   return (
     <Container>
       <Wrapper>
-        <div>Тема: {articleById[0].theme}</div>
-        <div>Рубрика: {articleById[0].rubric}</div>
+        <div>Тема: {articleById.theme}</div>
+        <div>Рубрика: {articleById.rubric}</div>
+        <button>like</button>
+        <button>add to fav</button>
       </Wrapper>
-      <h3>Название: {articleById[0].title}</h3>
-      <Text>Текст: {articleById[0].text}</Text>
+      <h3>Название: {articleById.title}</h3>
+      <Text>Текст: {articleById.text}</Text>
+      <Comments id={id} />
     </Container>
   );
 };

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import ListArticles from "../components/Articles/ListArticles";
 import { fetchArticlesByTheme, setStatus } from "../redux/articlesSlice";
+import { Filters } from "../components/Filters/Filters";
 
 const MediaPage = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const MediaPage = () => {
   return (
     <Wrapper>
       <h3>Media</h3>
+      <Filters />
       <ListArticles list={articlesByTheme} />
     </Wrapper>
   );

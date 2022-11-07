@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchArticles, setStatus } from "../redux/articlesSlice";
 import ListArticles from "../components/Articles/ListArticles";
+import { Filters } from "../components/Filters/Filters";
+import { Link } from "react-router-dom";
 
 const sections = [
   { theme: "coach", name: "Коуч" },
   { theme: "art", name: "Арт" },
-  { theme: "media", name: "Медиа" },
 ];
 
 const MainPage = () => {
@@ -26,12 +27,7 @@ const MainPage = () => {
 
   return (
     <Container>
-      {sections.map((i) => (
-        <Wrapper key={i.theme}>
-          <h3>{i.name}</h3>
-          <ListArticles list={articles} />
-        </Wrapper>
-      ))}
+      <Link to={`/archive`}>Архив</Link>
     </Container>
   );
 };
