@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import ListArticles from "../components/Articles/ListArticles";
-import { fetchArticlesByTheme, setStatus } from "../redux/articlesSlice";
+import ListArticles from "../components/Articles/ListPosts";
+import { fetchPostsByTheme, setStatus } from "../redux/postsSlice";
 import { Filters } from "../components/Filters/Filters";
 
 const MediaPage = () => {
@@ -10,15 +10,13 @@ const MediaPage = () => {
 
   useEffect(() => {
     dispatch(setStatus(false));
-    dispatch(fetchArticlesByTheme("media"));
+    dispatch(fetchPostsByTheme("media"));
   }, []);
 
-  const articlesByTheme = useSelector(
-    (state) => state.articlesSlice.articlesByTheme
-  );
-  const status = useSelector((state) => state.articlesSlice.status);
+  const postsByTheme = useSelector((state) => state.postsSlice.postsByTheme);
+  const status = useSelector((state) => state.postsSlice.status);
 
-  if (!status || !articlesByTheme?.length) {
+  if (!status || !postsByTheme?.length) {
     return null;
   }
 
@@ -26,7 +24,7 @@ const MediaPage = () => {
     <Wrapper>
       <h3>Media</h3>
       <Filters />
-      <ListArticles list={articlesByTheme} />
+      <ListArticles list={postsByTheme} />
     </Wrapper>
   );
 };

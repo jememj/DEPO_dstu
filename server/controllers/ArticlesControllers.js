@@ -24,7 +24,7 @@ export const getArticlesByRubric = async (req, res) => {
   try {
     const articles = await articleModel.findAll({
       where: {
-        rubric: req.params.theme,
+        rubric: req.params.rubric,
       },
     });
     res.json(articles);

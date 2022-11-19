@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchArticlesByTheme, setStatus } from "../redux/articlesSlice";
-import ListArticles from "../components/Articles/ListArticles";
+import { fetchPostsByTheme, setStatus } from "../redux/postsSlice";
+import ListArticles from "../components/Articles/ListPosts";
 import { Filters } from "../components/Filters/Filters";
 
 const ArtPage = () => {
@@ -10,22 +10,20 @@ const ArtPage = () => {
 
   useEffect(() => {
     dispatch(setStatus(false));
-    dispatch(fetchArticlesByTheme("art"));
+    dispatch(fetchPostsByTheme("art"));
   }, []);
 
-  const articlesByTheme = useSelector(
-    (state) => state.articlesSlice.articlesByTheme
-  );
+  const postsByTheme = useSelector((state) => state.postsSlice.postsByTheme);
 
-  const status = useSelector((state) => state.articlesSlice.status);
-  if (!status || !articlesByTheme?.length) {
+  const status = useSelector((state) => state.postsSlice.status);
+  if (!status || !postsByTheme?.length) {
     return null;
   }
   return (
     <Wrapper>
       <h3>Art</h3>
       <Filters />
-      <ListArticles list={articlesByTheme} />
+      <ListArticles list={postsByTheme} />
     </Wrapper>
   );
 };

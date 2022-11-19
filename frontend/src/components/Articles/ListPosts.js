@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import ArticleCompact from "./ArticleCompact";
+import PostCompact from "./PostCompact";
 
 const ListArticles = ({ list }) => {
+  if (!list) return null;
+
   return (
     <ListWrapper>
-      {list.map((article) => (
-        <ArticleCompact key={article.id} article={article} />
+      {list.map((post) => (
+        <PostCompact key={post.id} article={post} />
       ))}
     </ListWrapper>
   );

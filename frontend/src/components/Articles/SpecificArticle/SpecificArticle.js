@@ -1,23 +1,22 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchArticleById, setStatus } from "../../../redux/articlesSlice";
+import { fetchPostById, setStatus } from "../../../redux/postsSlice";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
+
 const CurrentArticle = () => {
   const dispatch = useDispatch();
 
   let { id } = useParams();
 
-  const articleById = useSelector(
-    (state) => state.articlesSlice.currentArticle
-  );
+  const articleById = useSelector((state) => state.postsSlice.currentPost);
   useEffect(() => {
     dispatch(setStatus(false));
-    dispatch(fetchArticleById(id));
+    dispatch(fetchPostById(id));
   }, []);
 
-  const status = useSelector((state) => state.articlesSlice.status);
+  const status = useSelector((state) => state.postsSlice.status);
   if (!status || !articleById) {
     return null;
   }

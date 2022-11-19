@@ -3648,6 +3648,11 @@
     "whatwg-mimetype" "^2.3.0"
     "whatwg-url" "^8.0.0"
 
+"dayjs@^1.11.6":
+  "integrity" "sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ=="
+  "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.11.6.tgz"
+  "version" "1.11.6"
+
 "debug@^2.6.0":
   "integrity" "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="
   "resolved" "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz"
@@ -7657,7 +7662,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.8.1":
+"prop-types@^15.6.1", "prop-types@^15.8.1":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -7756,6 +7761,13 @@
     "raf" "^3.4.1"
     "regenerator-runtime" "^0.13.9"
     "whatwg-fetch" "^3.6.2"
+
+"react-dayjs@^0.3.2":
+  "integrity" "sha512-N9ozA6KNunzvnhwRbDi0JTa1Ine8AWQxNQ1u6sPugBenpl2mXMf0c5nOxBcs8id0z9kaKVlF2NOYzWGMoEzelg=="
+  "resolved" "https://registry.npmjs.org/react-dayjs/-/react-dayjs-0.3.2.tgz"
+  "version" "0.3.2"
+  dependencies:
+    "prop-types" "^15.6.1"
 
 "react-dev-utils@^12.0.1":
   "integrity" "sha512-84Ivxmr17KjUupyqzFode6xKhjwuEJDROWKJy/BthkL7Wn6NJ8h4WE6k/exAv6ImS+0oZLRRW5j/aINMHyeGeQ=="
