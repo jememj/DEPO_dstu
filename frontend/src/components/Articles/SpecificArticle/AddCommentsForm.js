@@ -1,8 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { addComments, fetchCommentsById } from "../../../redux/articlesSlice";
-import generateRandomId from "../../../utils/generateRandomId";
+import { addComments, fetchCommentsById } from "../../../redux/postsSlice";
 
 export default function AddCommentsForm({ id }) {
   const dispatch = useDispatch();
@@ -11,11 +10,8 @@ export default function AddCommentsForm({ id }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const commentId = generateRandomId();
     if (text) {
-      dispatch(
-        addComments({ id: commentId, articleId: id, text, name: "test" })
-      );
+      dispatch(addComments({ post: id, text, name: "test" }));
       dispatch(fetchCommentsById(id));
       setText("");
     }

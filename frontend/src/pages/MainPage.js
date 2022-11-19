@@ -1,33 +1,29 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchArticles, setStatus } from "../redux/articlesSlice";
-import ListArticles from "../components/Articles/ListArticles";
-import { Filters } from "../components/Filters/Filters";
+import { fetchPosts, setStatus } from "../redux/postsSlice";
+import ListPosts from "../components/Articles/ListPosts";
 import { Link } from "react-router-dom";
-
-const sections = [
-  { theme: "coach", name: "Коуч" },
-  { theme: "art", name: "Арт" },
-];
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const articles = useSelector((state) => state.articlesSlice.articles);
+  const posts = useSelector((state) => state.postsSlice.posts);
 
   useEffect(() => {
     dispatch(setStatus(false));
-    dispatch(fetchArticles());
+    dispatch(fetchPosts());
   }, []);
 
-  const status = useSelector((state) => state.articlesSlice.status);
-  if (!status || !articles?.length) {
+  const status = useSelector((state) => state.postsSlice.status);
+  if (!status || !posts?.length) {
     return null;
   }
 
   return (
     <Container>
       <Link to={`/archive`}>Архив</Link>
+      Art
+      <ListPosts list={posts} />
     </Container>
   );
 };

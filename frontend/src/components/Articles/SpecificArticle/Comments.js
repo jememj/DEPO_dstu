@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCommentsById } from "../../../redux/articlesSlice";
+import { fetchCommentsById } from "../../../redux/postsSlice";
 import AddCommentsForm from "./AddCommentsForm";
+import dayjs from "dayjs";
 
 export default function Comments({ id }) {
   const dispatch = useDispatch();
@@ -10,7 +11,8 @@ export default function Comments({ id }) {
   useEffect(() => {
     dispatch(fetchCommentsById(id));
   }, []);
-  const commentsById = useSelector((state) => state.articlesSlice.commentsById);
+
+  const commentsById = useSelector((state) => state.postsSlice.commentsById);
 
   return (
     <Container>
@@ -18,6 +20,9 @@ export default function Comments({ id }) {
       <AddCommentsForm id={id} />
       {commentsById?.map((info) => (
         <FormComment key={info.id}>
+          <TextComment>
+            {dayjs(info.createdAt).format("DD/MM/YYYY")}
+          </TextComment>
           <TextComment>name: {info.name}</TextComment>
           <TextComment>text: {info.text}</TextComment>
         </FormComment>
