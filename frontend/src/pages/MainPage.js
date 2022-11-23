@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts, setStatus } from "../redux/postsSlice";
-import ListPosts from "../components/Articles/ListPosts";
+import ListPosts from "../components/Posts/ListPosts";
 import { Link } from "react-router-dom";
 
 const MainPage = () => {

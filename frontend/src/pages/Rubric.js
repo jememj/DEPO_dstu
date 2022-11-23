@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPostsByRubric, setStatus } from "../../redux/postsSlice";
-import ListArticles from "../../components/Articles/ListPosts";
+import { fetchPostsByRubric, setStatus } from "../redux/postsSlice";
+import ListArticles from "../components/Posts/ListPosts";
 import { useParams } from "react-router-dom";
 
 const Rubric = () => {
   const dispatch = useDispatch();
-  let { rubric } = useParams();
+  let { theme, rubric } = useParams();
+  console.log("theme", theme);
 
   useEffect(() => {
     dispatch(setStatus(false));

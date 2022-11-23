@@ -60,7 +60,6 @@ export const addComments = createAsyncThunk("addComments", async (data) => {
     .catch((err) => console.log(err));
   return res;
 });
-
 const postsSlice = createSlice({
   name: "posts",
   initialState: {
@@ -69,7 +68,7 @@ const postsSlice = createSlice({
     postsByRubric: [],
     currentPost: [],
     commentsById: [],
-    status: true,
+    status: false,
   },
   reducers: {
     setArticlesByTheme(state, action) {
@@ -80,11 +79,18 @@ const postsSlice = createSlice({
     setStatus(state, action) {
       state.status = action.payload;
     },
+    resetPost(state) {
+      state.currentPost = [];
+    },
+    resetComments(state) {
+      state.commentsById = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.posts = [...action.payload];
       state.status = true;
+      console.log(state.posts);
     });
     builder.addCase(fetchPostsByTheme.fulfilled, (state, action) => {
       state.postsByTheme = action.payload;
@@ -100,6 +106,7 @@ const postsSlice = createSlice({
     });
     builder.addCase(fetchCommentsById.fulfilled, (state, action) => {
       state.commentsById = action.payload;
+      state.status = true;
     });
     builder.addCase(addComments.fulfilled, (state, action) => {
       console.log("action.payload", action.payload);
@@ -107,6 +114,7 @@ const postsSlice = createSlice({
   },
 });
 
-export const { setArticlesByTheme, setStatus } = postsSlice.actions;
+export const { setArticlesByTheme, setStatus, resetPost, resetComments } =
+  postsSlice.actions;
 
 export default postsSlice.reducer;

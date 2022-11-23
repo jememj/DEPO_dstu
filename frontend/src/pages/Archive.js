@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { rubric } from "../../constants/rubric";
+import { rubric } from "../constants/rubric";
 
 const Archive = () => {
   return (

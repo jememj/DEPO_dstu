@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { rubric } from "../../constants/rubric";
+import { Link } from "react-router-dom";
 
-export const Filters = () => {
+export const Filters = ({ theme }) => {
+  console.log(theme);
   return (
     <Container>
       {rubric.map(({ id, name, value }) => (
-        <div key={id}>{value}</div>
+        <Link key={id} to={`/${theme}/${name}`}>
+          {value}
+        </Link>
       ))}
     </Container>
   );
@@ -14,6 +18,6 @@ export const Filters = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 20px;
   align-items: center;
 `;
