@@ -2,8 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { removeToken } from "../helpers";
-
 const links = [
   { path: "/main", name: "Главная" },
   { path: "/coach", name: "Коуч" },
@@ -12,15 +10,15 @@ const links = [
   { path: "/proffesion", name: "Проф" },
   { path: "/about", name: "О нас" },
   { path: "/archive", name: "Архив" },
+  { path: "/profile", name: "Профиль" },
 ];
 
 const Header = () => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    removeToken();
-    navigate("/signin", { replace: true });
-  };
+  // const navigate = useNavigate();
+  // const handleLogout = () => {
+  //   removeToken();
+  //   navigate("/signin", { replace: true });
+  // };
 
   return (
     <HeaderWrapper>
@@ -30,16 +28,6 @@ const Header = () => {
             {name}
           </Link>
         ))}
-        {false ? (
-          <>
-            {/* <Link to="/profile">{user.username}</Link> */}
-            <button onClick={handleLogout}>Выйти</button>
-          </>
-        ) : (
-          <>
-            <Link to="/signin">Войти</Link>
-          </>
-        )}
       </NavWrapper>
     </HeaderWrapper>
   );

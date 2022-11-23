@@ -1,19 +1,28 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import "./App.css";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, redirect } from "react-router-dom";
 import CoachPage from "./pages/CoachPage";
 import MainPage from "./pages/MainPage";
 import ArtPage from "./pages/ArtPage";
 import MediaPage from "./pages/MediaPage";
 import ProfessionPage from "./pages/ProfessionPage";
 import AboutUs from "./pages/AboutUs";
-import Archive from "./pages/archive/Archive";
-import Rubric from "./pages/archive/Rubric";
+import Archive from "./pages/Archive";
+import Rubric from "./pages/Rubric";
 import Header from "./components/Header";
-import CurrentArticle from "./components/Articles/SpecificArticle/SpecificArticle";
-import SignIn from "./pages/auth/SignIn";
-import SignUp from "./pages/auth/SignUp";
+import CurrentArticle from "./components/Posts/CurrentPost/CurrentPost";
+import SignIn from "./components/Auth/SignIn";
+import SignUp from "./components/Auth/SignUp";
+import Profile from "./pages/Profile";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // dispatch(checkAuth());
+  }, []);
+
   return (
     <div className="App">
       <Header />
@@ -30,6 +39,8 @@ function App() {
         <Route path="/archive/:rubric" element={<Rubric />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/:theme/:rubric" element={<Rubric />} />
       </Routes>
     </div>
   );

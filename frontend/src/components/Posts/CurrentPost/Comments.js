@@ -1,24 +1,16 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCommentsById } from "../../../redux/postsSlice";
+import { fetchCommentsById, resetComments } from "../../../redux/postsSlice";
 import AddCommentsForm from "./AddCommentsForm";
 import dayjs from "dayjs";
 
-export default function Comments({ id }) {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCommentsById(id));
-  }, []);
-
-  const commentsById = useSelector((state) => state.postsSlice.commentsById);
-
+export default function Comments({ comments, id }) {
   return (
     <Container>
       Комментарии
       <AddCommentsForm id={id} />
-      {commentsById?.map((info) => (
+      {comments?.map((info) => (
         <FormComment key={info.id}>
           <TextComment>
             {dayjs(info.createdAt).format("DD/MM/YYYY")}

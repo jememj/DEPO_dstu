@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPostsByTheme, setStatus } from "../redux/postsSlice";
-import ListArticles from "../components/Articles/ListPosts";
+import ListArticles from "../components/Posts/ListPosts";
 import { Filters } from "../components/Filters/Filters";
 
 const CoachPage = () => {
@@ -23,7 +23,7 @@ const CoachPage = () => {
   return (
     <Wrapper>
       <h3>Couch</h3>
-      <Filters />
+      <Filters theme="coach" />
       <ListArticles list={postsByTheme} />
     </Wrapper>
   );

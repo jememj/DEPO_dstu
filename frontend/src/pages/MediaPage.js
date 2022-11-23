@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import ListArticles from "../components/Articles/ListPosts";
+import ListArticles from "../components/Posts/ListPosts";
 import { fetchPostsByTheme, setStatus } from "../redux/postsSlice";
 import { Filters } from "../components/Filters/Filters";
 
@@ -23,7 +23,7 @@ const MediaPage = () => {
   return (
     <Wrapper>
       <h3>Media</h3>
-      <Filters />
+      <Filters theme="media" />
       <ListArticles list={postsByTheme} />
     </Wrapper>
   );

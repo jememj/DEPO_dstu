@@ -1,17 +1,19 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addComments, fetchCommentsById } from "../../../redux/postsSlice";
 
 export default function AddCommentsForm({ id }) {
   const dispatch = useDispatch();
 
   const [text, setText] = useState("");
+  const isAuth = useSelector((state) => state.userSlice.token);
+  const username = useSelector((state) => state.userSlice.username);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text) {
-      dispatch(addComments({ post: id, text, name: "test" }));
+      dispatch(addComments({ post: id, text, name: username }));
       dispatch(fetchCommentsById(id));
       setText("");
     }
@@ -20,6 +22,14 @@ export default function AddCommentsForm({ id }) {
   const handleChange = (e) => {
     setText(e.target.value);
   };
+
+  if (!isAuth.length)
+    return (
+      <div>
+        <input disabled />
+        <Button disabled>Написать комментарий</Button>
+      </div>
+    );
 
   return (
     <Form onSubmit={handleSubmit}>
